@@ -3,16 +3,16 @@
             [bobkonf.core :as core]))
 
 (defn body [ctx]
-  (get-in ctx [:request :body]))
+  (get-in ctx [:request :params]))
 
 (defresource user [id]
   :allowed-methods       [:get :post :delete]
   :available-media-types ["application/json"]
-  :exists?               (fn [ctx] (let [method (get-in ctx [:request :request-method])]
-                                     (core/user-exists? id)))
+  :exists?               (fn [ctx] (core/user-exists? id))
   :handle-not-found      (fn [ctx] {:message "User not found"})
   :handle-ok             (fn [ctx] (core/get-user id))
   :delete!               (fn [ctx] (core/delete-user id))
+  :can-post-to-missing?  false
   :post!                 (fn [ctx] (core/user-update! id (body ctx))))
 
 

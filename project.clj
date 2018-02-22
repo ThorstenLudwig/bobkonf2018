@@ -15,4 +15,7 @@
   :ring {:handler bobkonf.handler/app}
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
-                        [ring/ring-mock "0.3.0"]]}})
+                        [ring/ring-mock "0.3.0"]
+                        [cheshire "5.8.0"]
+                        [midje "1.9.1"]]
+         :plugins [[lein-midje "3.1.3"]]}})

@@ -34,3 +34,6 @@ UPDATE users SET username = :username, password = :password, email = :email WHER
 
 -- name: all-user
 SELECT * FROM users;
+
+-- name: remove-all-user!
+TRUNCATE TABLE users;

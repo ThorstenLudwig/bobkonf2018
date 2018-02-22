@@ -10,7 +10,6 @@
     (not-empty response)))
 
 (defn get-user [id]
-  (println id)
   (-> (db/get-user {:id id})
       first))
 
@@ -20,7 +19,7 @@
       db/update-user!))
 
 (defn create-user [user]
-  (let [id           (hash-email (:email user))
+  (let [id       (hash-email (:email user))
         new-user (assoc user :id id)]
   (db/create-user! new-user)
   new-user))
